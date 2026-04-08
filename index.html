@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
+        .table-scroll::-webkit-scrollbar { height: 6px; }
+        .table-scroll::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 4px; }
     </style>
 </head>
 <body class="bg-[#f9fafb] min-h-screen text-gray-900">
@@ -30,95 +32,161 @@
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-8">
+    <main class="py-8">
         
-        <div class="bg-white border border-gray-200 rounded-lg mb-8 shadow-sm">
-            <div class="flex flex-col md:flex-row items-center divide-y md:divide-y-0 md:divide-x divide-gray-100">
-                <div class="flex-1 w-full text-center py-6">
-                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Total Keseluruhan</p>
-                    <p class="text-4xl font-semibold text-gray-900" id="grand_total">0</p>
-                </div>
-                <div class="flex-1 w-full text-center py-6 bg-gray-50/50">
-                    <div class="flex items-center justify-center gap-2 mb-2">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                        <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Sudah Bekerja</p>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="bg-white border border-gray-200 rounded-lg mb-8 shadow-sm">
+                <div class="flex flex-col md:flex-row items-center divide-y md:divide-y-0 md:divide-x divide-gray-100">
+                    <div class="flex-1 w-full text-center py-6">
+                        <p class="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Total Keseluruhan</p>
+                        <p class="text-4xl font-semibold text-gray-900" id="grand_total">0</p>
                     </div>
-                    <p class="text-3xl font-semibold text-gray-900" id="grand_bekerja">0</p>
-                </div>
-                <div class="flex-1 w-full text-center py-6 bg-gray-50/50">
-                    <div class="flex items-center justify-center gap-2 mb-2">
-                        <span class="w-2 h-2 rounded-full bg-rose-500"></span>
-                        <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Belum Bekerja</p>
+                    <div class="flex-1 w-full text-center py-6 bg-gray-50/50">
+                        <div class="flex items-center justify-center gap-2 mb-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                            <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Sudah Bekerja</p>
+                        </div>
+                        <p class="text-3xl font-semibold text-gray-900" id="grand_bekerja">0</p>
                     </div>
-                    <p class="text-3xl font-semibold text-gray-900" id="grand_belum">0</p>
+                    <div class="flex-1 w-full text-center py-6 bg-gray-50/50">
+                        <div class="flex items-center justify-center gap-2 mb-2">
+                            <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                            <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Belum Bekerja</p>
+                        </div>
+                        <p class="text-3xl font-semibold text-gray-900" id="grand_belum">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-lg font-semibold text-gray-900">Penerima KJP</h2>
+                    </div>
+                    <div class="mb-8">
+                        <p class="text-3xl font-semibold text-gray-900" id="total_kjp">0</p>
+                        <p class="text-lg text-gray-500 mt-1">Total Responden</p>
+                    </div>
+                    <div class="mt-auto grid grid-cols-2 gap-4 border-t border-gray-100 pt-5">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Sudah Bekerja</p>
+                            <p class="text-lg font-semibold text-gray-900" id="kjp_bekerja">0</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Belum Bekerja</p>
+                            <p class="text-lg font-semibold text-gray-900" id="kjp_belum">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-lg font-semibold text-gray-900">Penerima KJMU</h2>
+                    </div>
+                    <div class="mb-8">
+                        <p class="text-3xl font-semibold text-gray-900" id="total_kjmu">0</p>
+                        <p class="text-lg text-gray-500 mt-1">Total Responden</p>
+                    </div>
+                    <div class="mt-auto grid grid-cols-2 gap-4 border-t border-gray-100 pt-5">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Sudah Bekerja</p>
+                            <p class="text-lg font-semibold text-gray-900" id="kjmu_bekerja">0</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Belum Bekerja</p>
+                            <p class="text-lg font-semibold text-gray-900" id="kjmu_belum">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gray-800"></div>
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-lg font-semibold text-gray-900">Penerima KJP dan KJMU</h2>                   
+                    </div>
+                    <div class="mb-8">
+                        <p class="text-3xl font-semibold text-gray-900" id="total_gabungan">0</p>
+                        <p class="text-lg text-gray-500 mt-1">Total Responden</p>
+                    </div>
+                    <div class="mt-auto grid grid-cols-2 gap-4 border-t border-gray-100 pt-5">
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Sudah Bekerja</p>
+                            <p class="text-lg font-semibold text-gray-900" id="gabungan_bekerja">0</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 mb-1">Belum Bekerja</p>
+                            <p class="text-lg font-semibold text-gray-900" id="gabungan_belum">0</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="max-w-[1600px] mx-auto px-6">
             
-            <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-lg font-semibold text-gray-900">Penerima KJP</h2>
-                </div>
-                <div class="mb-8">
-                    <p class="text-3xl font-semibold text-gray-900" id="total_kjp">0</p>
-                    <p class="text-lg text-gray-500 mt-1">Total Responden</p>
-                </div>
-                <div class="mt-auto grid grid-cols-2 gap-4 border-t border-gray-100 pt-5">
-                    <div>
-                        <p class="text-sm text-gray-500 mb-1">Sudah Bekerja</p>
-                        <p class="text-lg font-semibold text-gray-900" id="kjp_bekerja">0</p>
-                    </div>
-                    <div>
-                        <p class="text-sm text-gray-500 mb-1">Belum Bekerja</p>
-                        <p class="text-lg font-semibold text-gray-900" id="kjp_belum">0</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-lg font-semibold text-gray-900">Penerima KJMU</h2>
-                </div>
-                <div class="mb-8">
-                    <p class="text-3xl font-semibold text-gray-900" id="total_kjmu">0</p>
-                    <p class="text-lg text-gray-500 mt-1">Total Responden</p>
-                </div>
-                <div class="mt-auto grid grid-cols-2 gap-4 border-t border-gray-100 pt-5">
-                    <div>
-                        <p class="text-sm text-gray-500 mb-1">Sudah Bekerja</p>
-                        <p class="text-lg font-semibold text-gray-900" id="kjmu_bekerja">0</p>
-                    </div>
-                    <div>
-                        <p class="text-sm text-gray-500 mb-1">Belum Bekerja</p>
-                        <p class="text-lg font-semibold text-gray-900" id="kjmu_belum">0</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gray-800"></div>
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
                 
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-lg font-semibold text-gray-900">Penerima KJP dan KJMU</h2>                   
-                </div>
-                <div class="mb-8">
-                    <p class="text-3xl font-semibold text-gray-900" id="total_gabungan">0</p>
-                    <p class="text-lg text-gray-500 mt-1">Total Responden</p>
-                </div>
-                <div class="mt-auto grid grid-cols-2 gap-4 border-t border-gray-100 pt-5">
-                    <div>
-                        <p class="text-sm text-gray-500 mb-1">Sudah Bekerja</p>
-                        <p class="text-lg font-semibold text-gray-900" id="gabungan_bekerja">0</p>
+                <div class="bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col overflow-hidden">
+                    <div class="p-4 border-b border-gray-200 bg-gray-50">
+                        <h2 class="text-[15px] font-semibold text-gray-900 text-center">Total Rentang Gaji KJP</h2>
                     </div>
-                    <div>
-                        <p class="text-sm text-gray-500 mb-1">Belum Bekerja</p>
-                        <p class="text-lg font-semibold text-gray-900" id="gabungan_belum">0</p>
+                    <div class="overflow-x-auto table-scroll">
+                        <table class="w-full text-xs text-left text-gray-600">
+                            <thead class="text-gray-700 bg-gray-100/50 uppercase border-b border-gray-200">
+                                <tr>
+                                    <th class="px-3 py-3 border-r border-gray-200 w-[35%]">Gaji Tetap</th>
+                                    <th class="px-3 py-3 border-r border-gray-200 w-[15%] text-center">Total</th>
+                                    <th class="px-3 py-3 border-r border-gray-200 w-[35%]">Gaji Tidak Tetap</th>
+                                    <th class="px-3 py-3 w-[15%] text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_gaji_kjp" class="divide-y divide-gray-100">
+                                </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
 
+                <div class="bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col overflow-hidden">
+                    <div class="p-4 border-b border-gray-200 bg-gray-50">
+                        <h2 class="text-[15px] font-semibold text-gray-900 text-center">Total Rentang Gaji KJMU</h2>
+                    </div>
+                    <div class="overflow-x-auto table-scroll">
+                        <table class="w-full text-xs text-left text-gray-600">
+                            <thead class="text-gray-700 bg-gray-100/50 uppercase border-b border-gray-200">
+                                <tr>
+                                    <th class="px-3 py-3 border-r border-gray-200 w-[35%]">Gaji Tetap</th>
+                                    <th class="px-3 py-3 border-r border-gray-200 w-[15%] text-center">Total</th>
+                                    <th class="px-3 py-3 border-r border-gray-200 w-[35%]">Gaji Tidak Tetap</th>
+                                    <th class="px-3 py-3 w-[15%] text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_gaji_kjmu" class="divide-y divide-gray-100">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col overflow-hidden">
+                    <div class="p-4 border-b border-gray-200 bg-gray-800 text-white">
+                        <h2 class="text-[15px] font-semibold text-center">Total Rentang Gaji KJP dan KJMU</h2>
+                    </div>
+                    <div class="overflow-x-auto table-scroll">
+                        <table class="w-full text-xs text-left text-gray-600">
+                            <thead class="text-gray-700 bg-gray-100/50 uppercase border-b border-gray-200">
+                                <tr>
+                                    <th class="px-3 py-3 border-r border-gray-200 w-[35%]">Gaji Tetap</th>
+                                    <th class="px-3 py-3 border-r border-gray-200 w-[15%] text-center">Total</th>
+                                    <th class="px-3 py-3 border-r border-gray-200 w-[35%]">Gaji Tidak Tetap</th>
+                                    <th class="px-3 py-3 w-[15%] text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_gaji_gabungan" class="divide-y divide-gray-100">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </main>
 
@@ -132,21 +200,22 @@
             try {
                 setLoadingStatus(true);
 
-                const [kjpRes, kjmuRes, gabunganRes] = await Promise.all([
+                const [
+                    kjpRes, kjmuRes, gabunganRes, 
+                    gajiKjpRes, gajiKjmuRes, gajiGabunganRes
+                ] = await Promise.all([
                     supabaseClient.from('v_rekap_kjp').select('*').single(),
                     supabaseClient.from('v_rekap_kjmu').select('*').single(),
-                    supabaseClient.from('v_rekap_gabungan').select('*').single()
+                    supabaseClient.from('v_rekap_gabungan').select('*').single(),
+                    supabaseClient.from('v_rekap_gaji_kjp').select('*').order('urutan', { ascending: true }),
+                    supabaseClient.from('v_rekap_gaji_kjmu').select('*').order('urutan', { ascending: true }),
+                    supabaseClient.from('v_rekap_gaji_gabungan').select('*').order('urutan', { ascending: true })
                 ]);
-
-                if (kjpRes.error) throw kjpRes.error;
-                if (kjmuRes.error) throw kjmuRes.error;
-                if (gabunganRes.error) throw gabunganRes.error;
 
                 updateStats(kjpRes.data, 'total_kjp', 'kjp_bekerja', 'kjp_belum');
                 updateStats(kjmuRes.data, 'total_kjmu', 'kjmu_bekerja', 'kjmu_belum');
                 updateStats(gabunganRes.data, 'total_gabungan', 'gabungan_bekerja', 'gabungan_belum');
 
-                // Kalkulasi dan Update untuk Grand Total
                 const grandTotal = (kjpRes.data?.total || 0) + (kjmuRes.data?.total || 0) + (gabunganRes.data?.total || 0);
                 const grandBekerja = (kjpRes.data?.bekerja || 0) + (kjmuRes.data?.bekerja || 0) + (gabunganRes.data?.bekerja || 0);
                 const grandBelum = (kjpRes.data?.belum || 0) + (kjmuRes.data?.belum || 0) + (gabunganRes.data?.belum || 0);
@@ -155,9 +224,13 @@
                 document.getElementById('grand_bekerja').innerText = grandBekerja.toLocaleString('id-ID');
                 document.getElementById('grand_belum').innerText = grandBelum.toLocaleString('id-ID');
 
+                renderGajiTable(gajiKjpRes.data, 'tbody_gaji_kjp');
+                renderGajiTable(gajiKjmuRes.data, 'tbody_gaji_kjmu');
+                renderGajiTable(gajiGabunganRes.data, 'tbody_gaji_gabungan');
+
             } catch (error) {
                 console.error('Error fetching data:', error);
-                alert('Gagal mengambil data: ' + (error.message || 'Cek Console'));
+                alert('Gagal mengambil data. Cek Console untuk detail.');
             } finally {
                 setLoadingStatus(false);
             }
@@ -168,6 +241,37 @@
             document.getElementById(totalId).innerText = (data.total || 0).toLocaleString('id-ID');
             document.getElementById(bekerjaId).innerText = (data.bekerja || 0).toLocaleString('id-ID');
             document.getElementById(belumId).innerText = (data.belum || 0).toLocaleString('id-ID');
+        }
+
+        function renderGajiTable(data, tbodyId) {
+            const tbody = document.getElementById(tbodyId);
+            
+            if (!data || data.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="text-center py-4 text-gray-400">Belum ada data gaji</td></tr>`;
+                return;
+            }
+
+            const dataTetap = data.filter(d => d.jenis_gaji === 'Tetap').sort((a, b) => a.urutan - b.urutan);
+            const dataTidakTetap = data.filter(d => d.jenis_gaji === 'Tidak Tetap').sort((a, b) => a.urutan - b.urutan);
+
+            const maxLength = Math.max(dataTetap.length, dataTidakTetap.length);
+
+            let html = '';
+
+            for (let i = 0; i < maxLength; i++) {
+                const barisTetap = dataTetap[i] || { rentang_gaji: '-', total: '-' };
+                const barisTidakTetap = dataTidakTetap[i] || { rentang_gaji: '-', total: '-' };
+
+                html += `
+                    <tr class="bg-white hover:bg-gray-50/80 transition-colors">
+                        <td class="px-3 py-2 border-r border-gray-100">${barisTetap.rentang_gaji}</td>
+                        <td class="px-3 py-2 border-r border-gray-100 text-center font-medium">${barisTetap.total}</td>
+                        <td class="px-3 py-2 border-r border-gray-100">${barisTidakTetap.rentang_gaji}</td>
+                        <td class="px-3 py-2 text-center font-medium">${barisTidakTetap.total}</td>
+                    </tr>
+                `;
+            }
+            tbody.innerHTML = html;
         }
 
         function setLoadingStatus(isLoading) {
